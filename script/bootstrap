@@ -8,11 +8,22 @@ DOTFILES_ROOT=$(pwd -P)
 install_dotfiles () {
   printf "Installing Dotfiles\n"
 
-  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+  for dotfile in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
   do
-    dst="$HOME/.$(basename "${src%.*}")"
-    link_file "$src" "$dst"
+    destination="$HOME/.$(basename "${dotfile%.*}")"
+
+    if [ -e "$destination" ]
+    then
+      backup_file "$destination"
+    fi
+
+    link_file "$dotfile" "$destination"
   done
+}
+
+backup_file () {
+  mv "$1" "${1}.backup"
+  printf "Backed up $1 to ${1}.backup\n"
 }
 
 link_file () {

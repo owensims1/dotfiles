@@ -2,13 +2,23 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export PATH="$PATH:/usr/local/bin/elixir"
 
-export PROJECTS=$HOME/src
-
 ## Prompt
-BLUE="\[$(tput setaf 4)\]"
-TAN="\[$(tput setaf 5)\]"
-RESET="\[$(tput sgr0)\]"
+BLUE="$(tput setaf 4)"
+RED="$(tput setaf 1)"
+TAN="$(tput setaf 5)"
+RESET="$(tput sgr0)"
 USERNAME="\u"
 CURRENT_DIRECTORY="\w"
 
-export PS1="${BLUE}${USERNAME}${RESET} in ${TAN}${CURRENT_DIRECTORY}${RESET} > "
+git_branch() {
+  echo $(git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
+}
+
+git_prompt() {
+  if [ ! -z `git_branch` ]
+  then echo " on ${RED}`git_branch`${RESET}"
+  else echo ""
+  fi
+}
+
+export PS1="${BLUE}${USERNAME}${RESET} in ${TAN}${CURRENT_DIRECTORY}${RESET}\`git_prompt\` > "
