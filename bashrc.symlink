@@ -1,0 +1,14 @@
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+export PATH="$PATH:/usr/local/bin/elixir"
+
+export PROJECTS=$HOME/src
+
+## Prompt
+BLUE="\[$(tput setaf 4)\]"
+TAN="\[$(tput setaf 5)\]"
+RESET="\[$(tput sgr0)\]"
+USERNAME="\u"
+CURRENT_DIRECTORY="\w"
+
+export PS1="${BLUE}${USERNAME}${RESET} in ${TAN}${CURRENT_DIRECTORY}${RESET} > "

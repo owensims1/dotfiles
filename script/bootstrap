@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#
+# bootstrap installs things.
+
+cd "$(dirname "$0")/.."
+DOTFILES_ROOT=$(pwd -P)
+
+install_dotfiles () {
+  printf "Installing Dotfiles\n"
+
+  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+  do
+    dst="$HOME/.$(basename "${src%.*}")"
+    link_file "$src" "$dst"
+  done
+}
+
+link_file () {
+  ln -s "$1" "$2"
+  printf "Linked $1 to $2\n"
+}
+
+install_dotfiles
