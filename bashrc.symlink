@@ -1,6 +1,41 @@
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+alias reload!='. ~/.bashrc'
+
+if which rbenv > /dev/null
+  then eval "$(rbenv init -)"
+fi
 
 export PATH="$PATH:/usr/local/bin/elixir"
+
+if [ -e ~/.localrc ]
+then
+  source ~/.localrc
+fi
+
+## Vagrant
+
+alias vu="vagrant up"
+alias vs="vagrant ssh"
+alias vr="vagrant reload"
+alias vh="vagrant halt"
+
+# Ruby/Rails
+
+alias rs="rails server"
+
+## Ember
+
+alias es="ember server"
+
+## Git
+
+if [ -f ~/.git-completion ]
+then
+  source ~/.git-completion
+fi
+
+alias gf="git fetch"
+alias gco="git checkout"
+alias gr="git rebase"
 
 ## Prompt
 BLUE="$(tput setaf 4)"
