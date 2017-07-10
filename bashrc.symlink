@@ -4,7 +4,7 @@ if which rbenv > /dev/null
   then eval "$(rbenv init -)"
 fi
 
-export PATH="$PATH:/usr/local/bin/elixir"
+export PATH="$PATH:/usr/local/bin/elixir" # TODO if elixir is indeed installed
 
 if [ -e ~/.localrc ]
 then
@@ -18,9 +18,10 @@ alias vs="vagrant ssh"
 alias vr="vagrant reload"
 alias vh="vagrant halt"
 
-# Ruby/Rails
+## Ruby/Rails
 
 alias rs="rails server"
+alias rc="rails console"
 
 ## Ember
 
@@ -36,6 +37,7 @@ fi
 alias gf="git fetch"
 alias gco="git checkout"
 alias gr="git rebase"
+alias gb="git branch"
 
 ## Prompt
 BLUE="$(tput setaf 4)"
