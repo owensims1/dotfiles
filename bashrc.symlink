@@ -1,13 +1,9 @@
 alias reload!='. ~/.bashrc'
 
-if which rbenv > /dev/null
-  then eval "$(rbenv init -)"
-fi
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
-export PATH="$PATH:/usr/local/bin/elixir" # TODO if elixir is indeed installed
-
-if [ -e ~/.localrc ]
-then
+if [ -e ~/.localrc ]; then
   source ~/.localrc
 fi
 
@@ -18,7 +14,7 @@ alias vs="vagrant ssh"
 alias vr="vagrant reload"
 alias vh="vagrant halt"
 
-## Ruby/Rails
+# Ruby/Rails
 
 alias rs="rails server"
 alias rc="rails console"
@@ -29,15 +25,13 @@ alias es="ember server"
 
 ## Git
 
-if [ -f ~/.git-completion ]
-then
+if [ -f ~/.git-completion ]; then
   source ~/.git-completion
 fi
 
 alias gf="git fetch"
 alias gco="git checkout"
 alias gr="git rebase"
-alias gb="git branch"
 
 ## Prompt
 BLUE="$(tput setaf 4)"
