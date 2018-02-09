@@ -7,6 +7,13 @@ if [ -e ~/.localrc ]; then
   source ~/.localrc
 fi
 
+## System
+
+alias ls="gls -F --color"
+alias l="gls -lAh --color"
+alias ll="gls -l --color"
+alias la='gls -A --color'
+
 ## Vagrant
 
 alias vu="vagrant up"
@@ -35,6 +42,7 @@ alias gr="git rebase"
 alias gb="git branch"
 
 ## Prompt
+
 BLUE="$(tput setaf 4)"
 RED="$(tput setaf 1)"
 TAN="$(tput setaf 5)"
