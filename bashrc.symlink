@@ -1,18 +1,25 @@
 alias reload!='. ~/.bashrc'
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
 if [ -e ~/.localrc ]; then
   source ~/.localrc
 fi
 
 ## System
 
-alias ls="gls -F --color"
-alias l="gls -lAh --color"
-alias ll="gls -l --color"
-alias la='gls -A --color'
+export VISUAL=vim
+export EDITOR="$VISUAL"
+unset MAILCHECK
+
+# If not installed:
+# brew install https://raw.githubusercontent.com/rs/homebrew/gls/Library/Formula/gls.rb
+# alias ls="gls -F --color"
+# alias l="gls -lAh --color"
+# alias ll="gls -l --color"
+# alias la='gls -A --color'
+
+## SSH
+
+ssh-add ~/.ssh/id_rsa 2>/dev/null
 
 ## Vagrant
 
@@ -23,6 +30,12 @@ alias vh="vagrant halt"
 
 # Ruby/Rails
 
+export PATH="$HOME/.rbenv/bin:$HOME/.pyenv/shims/python:$PATH"
+if which rbenv
+then
+  eval "$(rbenv init -)"
+fi
+
 alias rs="rails server"
 alias rc="rails console"
 
@@ -32,14 +45,21 @@ alias es="ember server"
 
 ## Git
 
-if [ -f ~/.git-completion ]; then
-  source ~/.git-completion
+if [ -f ~/.git-completion.bash ]; then
+  source ~/.git-completion.bash
 fi
 
-alias gf="git fetch"
-alias gco="git checkout"
-alias gr="git rebase"
-alias gb="git branch"
+git config --global alias.co checkout
+git config --global alias.b branch
+git config --global alias.f fetch
+git config --global alias.s status
+git config --global alias.r rebase
+
+## Phabricator
+
+if [ -e ~/src/arcanist/arcanist/bin ]; then
+  export PATH="$PATH:~/src/arcanist/arcanist/bin/"
+fi
 
 ## Prompt
 
@@ -56,9 +76,9 @@ git_branch() {
 
 git_prompt() {
   if [ ! -z `git_branch` ]
-  then echo " on ${RED}`git_branch`${RESET}"
+  then echo " on `git_branch`"
   else echo ""
   fi
 }
 
-export PS1="${BLUE}${USERNAME}${RESET} in ${TAN}${CURRENT_DIRECTORY}${RESET}\`git_prompt\` > "
+export PS1="${USERNAME} in ${CURRENT_DIRECTORY}\`git_prompt\` > "
