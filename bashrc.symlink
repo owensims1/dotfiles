@@ -30,10 +30,9 @@ alias vh="vagrant halt"
 
 # Ruby/Rails
 
-export PATH="$HOME/.rbenv/bin:$HOME/.pyenv/shims/python:$PATH"
 if which rbenv
 then
-  eval "$(rbenv init -)"
+ eval "$(rbenv init -)" 2>/dev/null
 fi
 
 alias rs="rails server"
@@ -81,4 +80,4 @@ git_prompt() {
   fi
 }
 
-export PS1="${USERNAME} in ${CURRENT_DIRECTORY}\`git_prompt\` > "
+export PS1="${USERNAME} in ${CURRENT_DIRECTORY}\`git_prompt\` λ "
