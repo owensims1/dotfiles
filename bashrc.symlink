@@ -8,6 +8,7 @@ fi
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
+export IGNOREEOF=42
 unset MAILCHECK
 
 # If not installed:
