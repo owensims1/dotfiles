@@ -1,5 +1,6 @@
 **/scratch/
-
+**/cover/
 .DS_Store
 **/dist
 tags
+.eslintignore

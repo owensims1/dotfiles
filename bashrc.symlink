@@ -9,6 +9,7 @@ fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export IGNOREEOF=42
+export HISTCONTROL=ignoredups
 unset MAILCHECK
 
 # If not installed:
@@ -54,6 +55,10 @@ git config --global alias.b branch
 git config --global alias.f fetch
 git config --global alias.s status
 git config --global alias.r rebase
+
+alias gcan="git commit --amend --no-edit"
+alias gaa="git add ."
+alias gbd="git b -D"
 
 ## Phabricator
 
